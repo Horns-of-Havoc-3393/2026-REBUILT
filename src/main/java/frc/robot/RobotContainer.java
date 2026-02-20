@@ -2,11 +2,19 @@ package frc.robot;
 
 import frc.robot.subsystems.SwerveSubsystem;
 import swervelib.SwerveInputStream;
+
+import java.util.Optional;
+
+import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 
-public class RobotContainer {
+public class RobotContainer {     
+    String path = ""; 
+    Optional<Alliance> ally = DriverStation.getAlliance();
+
     private final CommandXboxController driver = new CommandXboxController(Constants.OperatorConstants.kDriverControllerPort);
     public SwerveSubsystem drivebase = new SwerveSubsystem();
 
@@ -29,10 +37,30 @@ public class RobotContainer {
 
     Command driveFieldOrientedDirectAngle = drivebase.driveFieldOriented(driveHeading);
     Command driveFieldOrientedAngularVelocity = drivebase.driveFieldOriented(driveAngularVelo);
+    
     private void configureBindings() {
         driver.start().onTrue(new InstantCommand(()->{drivebase.YawReset();},drivebase));
     }
     public Command getAutonomousCommand() {
-        return null; // fill in later
+    if (ally.isPresent()) {
+        if (ally.get() == Alliance.Red) {
+            switch (DriverStation.getLocation().toString()) {
+                case "1" -> path = "Red1";
+                case "2" -> path = "Red2";
+                case "3" -> path = "Red3";
+            }
+        }
+        if (ally.get() == Alliance.Blue) {
+               switch (DriverStation.getLocation().toString()) {
+                case "1" -> path = "Blue1";
+                case "2" -> path = "Blue2";
+                case "3" -> path = "Blue3";
+            }
+        }
+        }
+    else {
+        System.err.print("no alliance");
+    }
+    return drivebase.getAutonomousCommand(path);       
     }
 }
