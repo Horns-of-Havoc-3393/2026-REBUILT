@@ -7,13 +7,19 @@
         {
           "type": "path",
           "data": {
-            "pathName": "P1"
+            "pathName": "P3"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "P5"
           }
         }
       ]
     }
   },
-  "resetOdom": false,
-  "folder": null,
+  "resetOdom": true,
+  "folder": "BLUE",
   "choreoAuto": false
 }
