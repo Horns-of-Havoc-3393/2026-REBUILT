@@ -4,6 +4,10 @@
 
 package frc.robot;
 
+import java.util.Optional;
+
+import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
@@ -17,15 +21,18 @@ public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
 
   private final RobotContainer m_robotContainer;
-
+    Optional<Alliance> ally;
+  String path ="";
   /**
    * This function is run when the robot is first started up and should be used for any
    * initialization code.
    */
   public Robot() {
+
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
+    DriverStation.silenceJoystickConnectionWarning(true);
   }
 
   /**
@@ -54,6 +61,27 @@ public class Robot extends TimedRobot {
   /** This autonomous runs the autonomous command selected by your {@link RobotContainer} class. */
   @Override
   public void autonomousInit() {
+    ally  = DriverStation.getAlliance();  
+    if (ally.isPresent()) {
+        if (ally.get()   == Alliance.Red) {
+            switch (DriverStation.getLocation().toString()) {
+                case "1" -> {path = "RED1";System.out.println("path:" + path);}
+                case "2" -> {path = "RED2";System.out.println("path:" + path);}
+                case "3" -> {path = "RED3";System.out.println("path:" + path);}
+            }
+        }
+        if (ally.get() == Alliance.Blue) {
+               switch (DriverStation.getLocation().toString()) {
+                case "1" -> {path = "BLUE1";System.out.println("path:" + path);}
+                case "2" -> {path = "BLUE2";System.out.println("path:" + path);}
+                case "3" -> {path = "BLUE3";System.out.println("path:" + path);}
+            }
+        }
+        }
+    else {
+        System.err.print("no alliance");
+    }
+    m_robotContainer.SetPath(path);
     m_autonomousCommand = m_robotContainer.getAutonomousCommand();
 
     // schedule the autonomous command (example)
