@@ -20,4 +20,12 @@ public final class Constants {
   }
   public static final double stickDeadband = 0.05;
   public static final double max_speed = Units.feetToMeters(1);
+  public static final int KrakenLiftIDL = 0;
+  public static final int KrakenLiftIDR = 0;
+  public static final int IntakeSparkIDL = 0;
+  public static final int IntakeSparkIDR = 0;
+  public static final int IntakeFlipSparkID =0;
+  public static final int ShooterVortexID = 0;
+  public static final int ShooterRollerSparkID = 0;
+  
 }
