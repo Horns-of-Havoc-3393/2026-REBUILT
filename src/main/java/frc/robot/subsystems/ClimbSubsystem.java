@@ -22,25 +22,28 @@ public class ClimbSubsystem extends SubsystemBase{
     public void Zero(){
         
     }
-    public void Extend(double rate){
-        if(topLimit.get()){
-            KrakenLeft.set(0);
-            KrakenRight.set(0);
-            rate = 0;
-        }else{
-            KrakenLeft.set(rate);
-            KrakenRight.set(rate);
-        }
+    public void Set(){
     }
-    public void Retract(double rate){
-        if(bottomLimit.get()){
-            KrakenRight.set(0);
-            KrakenLeft.set(0);
-            rate = 0;
-        }else{
-            KrakenRight.set(rate);
-            KrakenLeft.set(rate);
-        }
+    // public void Extend(double rate){
+    //     if(topLimit.get()){
+    //         KrakenLeft.set(0);
+    //         KrakenRight.set(0);
+    //         rate = 0;
+    //     }else{
+    //         KrakenLeft.set(rate);
+    //         KrakenRight.set(rate);
+    //     }
+    // }
+    // public void Retract(double rate){
+    //     if(bottomLimit.get()){
+    //         KrakenRight.set(0);
+    //         KrakenLeft.set(0);
+    //         rate = 0;
+    //     }else{
+    //         KrakenRight.set(rate);
+    //         KrakenLeft.set(rate);
+    //     }
     
-    }
+    // }
+
 }
