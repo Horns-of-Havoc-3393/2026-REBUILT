@@ -96,7 +96,7 @@ public class SwerveSubsystem extends SubsystemBase {
   public void YawReset(){
     
       swerveDrive.zeroGyro();
-      System.out.println("reset Yaw");
+      System.out.println("resset Yaw");
     
   }
 
