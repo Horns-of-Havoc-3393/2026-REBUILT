@@ -1,5 +1,6 @@
 package frc.robot;
 
+import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.SwerveSubsystem;
 import swervelib.SwerveInputStream; 
 import edu.wpi.first.wpilibj2.command.Command;
@@ -11,10 +12,13 @@ public class RobotContainer {
 
     private final CommandXboxController driver = new CommandXboxController(Constants.OperatorConstants.kDriverControllerPort);
     public SwerveSubsystem drivebase = new SwerveSubsystem();
-    
+    public IntakeSubsystem intake = new IntakeSubsystem();
+
     public RobotContainer() {
         configureBindings();
-    drivebase.setDefaultCommand(driveFieldOrientedAngularVelocity);
+        drivebase.setDefaultCommand(driveFieldOrientedAngularVelocity);
+        
+
     }
     
     SwerveInputStream driveAngularVelo = SwerveInputStream.of(drivebase.getSwerveDrive(),
@@ -34,6 +38,9 @@ public class RobotContainer {
     Command driveFieldOrientedAngularVelocity = drivebase.driveFieldOriented(driveAngularVelo);
     private void configureBindings() {
         driver.start().onTrue(new InstantCommand(()->{drivebase.YawReset();},drivebase));
+        intake.Move(driver.getRightTriggerAxis()- driver.getLeftTriggerAxis());
+        driver.rightBumper().toggleOnFalse(intake.spinDown());
+        driver.rightBumper().toggleOnTrue(intake.spinUp());  
     }
     public Command getAutonomousCommand() {
     
