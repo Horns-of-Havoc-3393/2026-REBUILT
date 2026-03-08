@@ -1,4 +1,14 @@
 {
+  "Keyboard 0 Settings": {
+    "window": {
+      "visible": true
+    }
+  },
+  "Keyboard 2 Settings": {
+    "window": {
+      "visible": true
+    }
+  },
   "System Joysticks": {
     "window": {
       "enabled": false
@@ -27,8 +37,8 @@
       "buttonKeys": [
         90,
         88,
-        67,
-        86
+        -1,
+        -1
       ],
       "povConfig": [
         {
@@ -79,8 +89,8 @@
       "axisCount": 2,
       "buttonCount": 6,
       "buttonKeys": [
-        260,
-        268,
+        67,
+        86,
         266,
         261,
         269,

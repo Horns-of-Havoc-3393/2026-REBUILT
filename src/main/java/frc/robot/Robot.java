@@ -6,11 +6,14 @@ package frc.robot;
 
 import java.util.Optional;
 
+import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.PowerDistribution;
 import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.subsystems.IntakeSubsystem;
 
 /**
  * The methods in this class are called automatically corresponding to each mode, as described in
@@ -19,8 +22,10 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
  */
 public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
-
+  NetworkTableInstance tabInst = NetworkTableInstance.getDefault();
   private final RobotContainer m_robotContainer;
+  PowerDistribution pdh = new PowerDistribution();
+  //IntakeSubsystem intake = new IntakeSubsystem();
     Optional<Alliance> ally;
   String path ="";
   /**
@@ -44,6 +49,21 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
+    // tabInst.getTable("Robot").getDoubleTopic("BRDriveCurrent").publish().set(pdh.getCurrent(10));
+    // tabInst.getTable("Robot").getDoubleTopic("FRDriveCurrent").publish().set(pdh.getCurrent(13));
+    // tabInst.getTable("Robot").getDoubleTopic("FLDriveCurrent").publish().set(pdh.getCurrent(12));
+    // tabInst.getTable("Robot").getDoubleTopic("BLDriveCurrent").publish().set(pdh.getCurrent(9));
+
+    // tabInst.getTable("Robot").getDoubleTopic("FLSteerCurrent").publish().set(pdh.getCurrent(8));
+    // tabInst.getTable("Robot").getDoubleTopic("FRSteerCurrent").publish().set(pdh.getCurrent(6));
+    // tabInst.getTable("Robot").getDoubleTopic("BRSteerCurrent").publish().set(pdh.getCurrent(11));
+    // tabInst.getTable("Robot").getDoubleTopic("BLSteerCurrent").publish().set(pdh.getCurrent(7));
+
+    
+    // tabInst.getTable("Robot").getDoubleTopic("FLipperCurrent").publish().set(pdh.getCurrent(1));
+    
+    // tabInst.getTable("Robot").getDoubleTopic("LeftRollerCurrent").publish().set(pdh.getCurrent(0));
+
     // Runs the Scheduler.  This is responsible for polling buttons, adding newly-scheduled
     // commands, running already-scheduled commands, removing finished or interrupted commands,
     // and running subsystem periodic() methods.  This must be called from the robot's periodic
@@ -61,28 +81,28 @@ public class Robot extends TimedRobot {
   /** This autonomous runs the autonomous command selected by your {@link RobotContainer} class. */
   @Override
   public void autonomousInit() {
-    ally  = DriverStation.getAlliance();  
-   // int local = DriverStation.getLocation();
-    if (ally.isPresent()) {
-        if (ally.get()   == Alliance.Red) {
-            switch (DriverStation.getLocation().getAsInt()) {
-                case 1 -> {path = "RED1";System.out.println("path:" + path);}
-                case 2 -> {path = "RED2";System.out.println("path:" + path);}
-                case 3 -> {path = "RED3";System.out.println("path:" + path);}
-            }
-        }
-        if (ally.get() == Alliance.Blue) {
-               switch (DriverStation.getLocation().getAsInt()) {
-                case 1 -> {path = "BLUE1";System.out.println("path:" + path);}
-                case 2 -> {path = "BLUE2";System.out.println("path:" + path);}
-                case 3 -> {path = "BLUE3";System.out.println("path:" + path);}
-            }
-        }
-        }
-    else {
-        System.err.print("no alliance");
-    }
-    m_robotContainer.SetPath(path);
+  //   ally  = DriverStation.getAlliance();  
+  //  // int local = DriverStation.getLocation();
+  //   if (ally.isPresent()) {
+  //       if (ally.get()   == Alliance.Red) {
+  //           switch (DriverStation.getLocation().getAsInt()) {
+  //               case 1 -> {path = "RED1";System.out.println("path:" + path);}
+  //               case 2 -> {path = "RED2";System.out.println("path:" + path);}
+  //               case 3 -> {path = "RED3";System.out.println("path:" + path);}
+  //           }
+  //       }
+  //       if (ally.get() == Alliance.Blue) {
+  //              switch (DriverStation.getLocation().getAsInt()) {
+  //               case 1 -> {path = "BLUE1";System.out.println("path:" + path);}
+  //               case 2 -> {path = "BLUE2";System.out.println("path:" + path);}
+  //               case 3 -> {path = "BLUE3";System.out.println("path:" + path);}
+  //           }
+  //       }
+  //       }
+  //   else {
+  //       System.err.print("no alliance");
+  //   }
+    //m_robotContainer.SetPath(path);
     m_autonomousCommand = m_robotContainer.getAutonomousCommand();
 
     // schedule the autonomous command (example)

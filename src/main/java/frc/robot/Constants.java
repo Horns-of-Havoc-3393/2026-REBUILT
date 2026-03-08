@@ -19,7 +19,7 @@ public final class Constants {
     public static final int kDriverControllerPort = 0;
   }
   public static final double stickDeadband = 0.05;
-  public static final double max_speed = Units.feetToMeters(5);
+  public static final double max_speed = Units.feetToMeters(35);
   public static final int KrakenLiftIDL = 0;
   public static final int KrakenLiftIDR = 0;
   public static final int IntakeSparkIDL = 20;
