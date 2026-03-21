@@ -5,23 +5,19 @@ import java.util.function.Supplier;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.ShootSubsystem;
 
-public class ShootnFeedCommand extends Command {
+public class feedCommand extends Command {
     ShootSubsystem subby;
     double speed;
-    double rate;
-    public ShootnFeedCommand(ShootSubsystem subby, double speed,double rate){
+    public feedCommand(ShootSubsystem subby, double speed){
         this.subby = subby;
         this.speed = speed;
-        this.rate = rate;
         addRequirements(subby);
     }
     @Override
     public void initialize(){}
     @Override
     public void execute(){
-        
-        subby.RampUP(speed);
-        subby.Feed(rate);
+        subby.Feed(speed);
     }
     @Override
     public void end(boolean interrupted){

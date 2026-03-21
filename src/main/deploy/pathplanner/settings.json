@@ -3,6 +3,7 @@
   "robotLength": 1.0,
   "holonomicMode": true,
   "pathFolders": [
+    "BonneyLake Alliance",
     "PATHS"
   ],
   "autoFolders": [

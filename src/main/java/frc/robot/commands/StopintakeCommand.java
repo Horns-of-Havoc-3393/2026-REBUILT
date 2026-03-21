@@ -1,12 +1,14 @@
 package frc.robot.commands;
 
+import com.fasterxml.jackson.databind.deser.std.EnumMapDeserializer;
+
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.IntakeSubsystem;
 
-public class intakeCommand extends Command {
+public class StopintakeCommand extends Command {
 
     IntakeSubsystem subby;
-    public intakeCommand(IntakeSubsystem subby){
+    public StopintakeCommand(IntakeSubsystem subby){
         this.subby = subby;
         addRequirements(subby);
     }
@@ -16,7 +18,7 @@ public class intakeCommand extends Command {
     public void initialize(){}
     @Override
     public void execute(){
-        subby.Roll(1);
+        subby.Roll(0);
         end(isScheduled());
     }
     @Override

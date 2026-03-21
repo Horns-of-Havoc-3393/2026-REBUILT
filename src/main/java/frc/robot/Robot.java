@@ -85,16 +85,16 @@ public class Robot extends TimedRobot {
     if (ally.isPresent()) {
         if (ally.get()   == Alliance.Red) {
             switch (DriverStation.getLocation().getAsInt()) {
-                case 1 -> {path = "RED1";System.out.println("path:" + path);}
-                case 2 -> {path = "RED2";System.out.println("path:" + path);}
-                case 3 -> {path = "RED3";System.out.println("path:" + path);}
+                case 1 -> {path = "Position1";System.out.println("path:" + path);}
+                case 2 -> {path = "Position2";System.out.println("path:" + path);}
+                case 3 -> {path = "Position3";System.out.println("path:" + path);}
             }
         }
         if (ally.get() == Alliance.Blue) {
                switch (DriverStation.getLocation().getAsInt()) {
-                case 1 -> {path = "BLUE1";System.out.println("path:" + path);}
-                case 2 -> {path = "BLUE2";System.out.println("path:" + path);}
-                case 3 -> {path = "BLUE3";System.out.println("path:" + path);}
+                case 1 -> {path = "Position1";System.out.println("path:" + path);}
+                case 2 -> {path = "Position2";System.out.println("path:" + path);}
+                case 3 -> {path = "Position3";System.out.println("path:" + path);}
             }
         }
         }
