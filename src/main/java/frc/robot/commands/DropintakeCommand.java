@@ -9,7 +9,7 @@ public class DropintakeCommand extends Command {
     IntakeSubsystem subby;
     public DropintakeCommand(IntakeSubsystem subby){
         this.subby = subby;
-        addRequirements(subby);
+        //addRequirements(subby);
     }
 
 

@@ -9,7 +9,7 @@ public class LiftintakeCommand extends Command {
     IntakeSubsystem subby;
     public LiftintakeCommand(IntakeSubsystem subby){
         this.subby = subby;
-        addRequirements(subby);
+        //addRequirements(subby);
     }
 
 

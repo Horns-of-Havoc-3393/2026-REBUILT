@@ -66,12 +66,12 @@ public class RobotContainer {
     private void configureBindings() {
         driver.start().onTrue(new InstantCommand(()->{drivebase.YawReset();},drivebase));
         operatror.leftBumper().toggleOnTrue(new intakeCommand(intake));
-        
+
         
     }
     public Command getAutonomousCommand() {
     
-    return drivebase.getAutonomousCommand("BLUE1");    
+    return drivebase.getAutonomousCommand(path);    
     //return drivebase.getAutonomousCommand("Blue Playoffs Bonney Lake");    
     }
     public void SetPath(String pth){

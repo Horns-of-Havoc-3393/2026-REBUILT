@@ -9,7 +9,7 @@ public class feedCommand extends Command {
     public feedCommand(ShootSubsystem subby, double speed){
         this.subby = subby;
         this.speed = speed;
-        addRequirements(subby);
+       // addRequirements(subby);
     }
     @Override
     public void initialize(){}

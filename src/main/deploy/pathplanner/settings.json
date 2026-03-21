@@ -6,10 +6,7 @@
     "BonneyLake Alliance",
     "PATHS"
   ],
-  "autoFolders": [
-    "BLUE",
-    "RED"
-  ],
+  "autoFolders": [],
   "defaultMaxVel": 3.0,
   "defaultMaxAccel": 3.0,
   "defaultMaxAngVel": 540.0,

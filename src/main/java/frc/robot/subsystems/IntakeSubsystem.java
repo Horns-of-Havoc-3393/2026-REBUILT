@@ -15,7 +15,6 @@ public class IntakeSubsystem  extends SubsystemBase{
     }
     
     public void Flip(double rate){
-        System.out.println("flipper: "+lift.getOutputCurrent());
         lift.set(rate);
     }
     public void Roll(double speed){
@@ -25,6 +24,7 @@ public class IntakeSubsystem  extends SubsystemBase{
     @Override
     public void periodic(){
         SmartDashboard.putNumber("liftCUrrent", lift.getOutputCurrent());
+        System.out.println("flipper: "+lift.getOutputCurrent() + "|"+"topROll: "+topRoller.getOutputCurrent() + "|"+"BottomRoll: "+bottomRoller.getOutputCurrent());
     }
 
 }

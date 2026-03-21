@@ -9,7 +9,7 @@ public class shootCommand extends Command {
     public shootCommand(ShootSubsystem subby, double speed){
         this.subby = subby;
         this.speed = speed;
-        addRequirements(subby);
+        //addRequirements(subby);
     }
     @Override
     public void initialize(){}
