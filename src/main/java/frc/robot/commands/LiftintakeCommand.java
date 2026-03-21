@@ -1,12 +1,13 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.Command;
+import frc.robot.Constants;
 import frc.robot.subsystems.IntakeSubsystem;
 
-public class StopintakeCommand extends Command {
+public class LiftintakeCommand extends Command {
 
     IntakeSubsystem subby;
-    public StopintakeCommand(IntakeSubsystem subby){
+    public LiftintakeCommand(IntakeSubsystem subby){
         this.subby = subby;
         addRequirements(subby);
     }
@@ -16,11 +17,19 @@ public class StopintakeCommand extends Command {
     public void initialize(){}
     @Override
     public void execute(){
-        subby.Roll(0);
-        end(isScheduled());
+        if(subby.lift.getOutputCurrent()<Constants.LiftCurrentStop){
+            subby.Flip(-.3);
+        }else{
+            subby.Flip(0);
+        }
     }
     @Override
     public void end(boolean interrupted){
+        if(subby.lift.getOutputCurrent()<Constants.LiftCurrentStop){
+            subby.Flip(.3);
+        }else{
+            subby.Flip(0);
+        } 
     }
     @Override
     public boolean isFinished(){

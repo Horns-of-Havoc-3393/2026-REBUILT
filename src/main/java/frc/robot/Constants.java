@@ -17,6 +17,7 @@ import edu.wpi.first.math.util.Units;
 public final class Constants {
   public static class OperatorConstants {
     public static final int kDriverControllerPort = 0;
+    public static final int kOperatorControllerPort = 1;
   }
   public static final double stickDeadband = 0.05;
   public static final double max_speed = Units.feetToMeters(1);
@@ -25,5 +26,7 @@ public final class Constants {
   public static final int IntakeFlipSparkID =24;
   public static final int ShooterVortexID = 23;
   public static final int ShooterRollerSparkID = 22;
+  public static final int LiftCurrentStop= 5;
+
   
 }

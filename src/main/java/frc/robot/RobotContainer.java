@@ -25,6 +25,8 @@ public class RobotContainer {
     String path = ""; 
 
     private final CommandXboxController driver = new CommandXboxController(Constants.OperatorConstants.kDriverControllerPort);
+    private final CommandXboxController operatror = new CommandXboxController(Constants.OperatorConstants.kOperatorControllerPort);
+    
     public SwerveSubsystem drivebase = new SwerveSubsystem();
     public IntakeSubsystem intake = new IntakeSubsystem();
     public ShootSubsystem shooter = new ShootSubsystem();
@@ -41,7 +43,7 @@ public class RobotContainer {
         NamedCommands.registerCommand("StopShooter command", new shootCommand(shooter,-1));
         NamedCommands.registerCommand("Feed command", new feedCommand(shooter,.3));
         NamedCommands.registerCommand("stopFeed command", new feedCommand(shooter,0));
-        shooter.setDefaultCommand(new shootnFeedCommand(shooter,driver.getRightTriggerAxis(),driver.getLeftTriggerAxis()));
+        shooter.setDefaultCommand(new shootnFeedCommand(shooter,operatror.getRightTriggerAxis(),operatror.getLeftTriggerAxis()));
     }
     
     SwerveInputStream driveAngularVelo = SwerveInputStream.of(drivebase.getSwerveDrive(),
@@ -63,7 +65,8 @@ public class RobotContainer {
 
     private void configureBindings() {
         driver.start().onTrue(new InstantCommand(()->{drivebase.YawReset();},drivebase));
-        driver.leftBumper().toggleOnTrue(new intakeCommand(intake));
+        operatror.leftBumper().toggleOnTrue(new intakeCommand(intake));
+        
         
     }
     public Command getAutonomousCommand() {
