@@ -17,9 +17,6 @@ public class RobotContainer {
     public RobotContainer() {
         configureBindings();
         drivebase.setDefaultCommand(driveFieldOrientedAngularVelocity);
-        intake.Move(driver.getRightTriggerAxis()- driver.getLeftTriggerAxis());
-        
-
     }
     
     SwerveInputStream driveAngularVelo = SwerveInputStream.of(drivebase.getSwerveDrive(),
@@ -39,19 +36,11 @@ public class RobotContainer {
     Command driveFieldOrientedAngularVelocity = drivebase.driveFieldOriented(driveAngularVelo);
     private void configureBindings() {
         driver.start().onTrue(new InstantCommand(()->{drivebase.YawReset();},drivebase));
-        driver.rightBumper().toggleOnFalse(intake.spinDown());
-        driver.rightBumper().toggleOnTrue(intake.spinUp());
-        driver.leftBumper().toggleOnFalse(intake.spinDown());
-        driver.leftBumper().toggleOnTrue(intake.spinOut());
-        driver.a().toggleOnTrue(intake.Move(.75));
-        driver.a().toggleOnFalse(intake.Move(0));
-        driver.y().toggleOnTrue(intake.Move(-.75));
-        driver.y().toggleOnFalse(intake.Move(0));
     }
     public Command getAutonomousCommand() {
     
-    //return drivebase.getAutonomousCommand(path);    
-    return drivebase.getAutonomousCommand("Blue Playoffs Bonney Lake");    
+    return drivebase.getAutonomousCommand(path);    
+    //return drivebase.getAutonomousCommand("Blue Playoffs Bonney Lake");    
     }
     public void SetPath(String pth){
         path = pth;

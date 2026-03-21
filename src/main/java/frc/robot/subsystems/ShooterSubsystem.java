@@ -17,5 +17,7 @@ public class ShooterSubsystem {
     public void RampUP(double percentage){
         shooter.set(limit.calculate(percentage));
     }
-    
+    public void Feed(double rate){
+            feeder.set(rate);
+    }
 }

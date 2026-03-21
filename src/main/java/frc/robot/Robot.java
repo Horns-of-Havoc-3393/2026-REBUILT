@@ -10,10 +10,10 @@ import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.PowerDistribution;
 import edu.wpi.first.wpilibj.DriverStation.Alliance;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import frc.robot.subsystems.IntakeSubsystem;
 
 /**
  * The methods in this class are called automatically corresponding to each mode, as described in
@@ -25,7 +25,6 @@ public class Robot extends TimedRobot {
   NetworkTableInstance tabInst = NetworkTableInstance.getDefault();
   private final RobotContainer m_robotContainer;
   PowerDistribution pdh = new PowerDistribution();
-  //IntakeSubsystem intake = new IntakeSubsystem();
     Optional<Alliance> ally;
   String path ="";
   /**
@@ -81,28 +80,28 @@ public class Robot extends TimedRobot {
   /** This autonomous runs the autonomous command selected by your {@link RobotContainer} class. */
   @Override
   public void autonomousInit() {
-  //   ally  = DriverStation.getAlliance();  
-  //  // int local = DriverStation.getLocation();
-  //   if (ally.isPresent()) {
-  //       if (ally.get()   == Alliance.Red) {
-  //           switch (DriverStation.getLocation().getAsInt()) {
-  //               case 1 -> {path = "RED1";System.out.println("path:" + path);}
-  //               case 2 -> {path = "RED2";System.out.println("path:" + path);}
-  //               case 3 -> {path = "RED3";System.out.println("path:" + path);}
-  //           }
-  //       }
-  //       if (ally.get() == Alliance.Blue) {
-  //              switch (DriverStation.getLocation().getAsInt()) {
-  //               case 1 -> {path = "BLUE1";System.out.println("path:" + path);}
-  //               case 2 -> {path = "BLUE2";System.out.println("path:" + path);}
-  //               case 3 -> {path = "BLUE3";System.out.println("path:" + path);}
-  //           }
-  //       }
-  //       }
-  //   else {
-  //       System.err.print("no alliance");
-  //   }
-    //m_robotContainer.SetPath(path);
+    ally  = DriverStation.getAlliance();  
+   // int local = DriverStation.getLocation();
+    if (ally.isPresent()) {
+        if (ally.get()   == Alliance.Red) {
+            switch (DriverStation.getLocation().getAsInt()) {
+                case 1 -> {path = "RED1";System.out.println("path:" + path);}
+                case 2 -> {path = "RED2";System.out.println("path:" + path);}
+                case 3 -> {path = "RED3";System.out.println("path:" + path);}
+            }
+        }
+        if (ally.get() == Alliance.Blue) {
+               switch (DriverStation.getLocation().getAsInt()) {
+                case 1 -> {path = "BLUE1";System.out.println("path:" + path);}
+                case 2 -> {path = "BLUE2";System.out.println("path:" + path);}
+                case 3 -> {path = "BLUE3";System.out.println("path:" + path);}
+            }
+        }
+        }
+    else {
+        System.err.print("no alliance");
+    }
+    m_robotContainer.SetPath(path);
     m_autonomousCommand = m_robotContainer.getAutonomousCommand();
 
     // schedule the autonomous command (example)
