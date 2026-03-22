@@ -8,10 +8,6 @@ import frc.robot.subsystems.ShootSubsystem;
 import frc.robot.subsystems.SwerveSubsystem;
 import swervelib.SwerveInputStream;
 
-import static edu.wpi.first.units.Units.Newton;
-
-import org.opencv.dnn.Image2BlobParams;
-
 import com.pathplanner.lib.auto.NamedCommands;
 
 import edu.wpi.first.wpilibj.RobotBase;
