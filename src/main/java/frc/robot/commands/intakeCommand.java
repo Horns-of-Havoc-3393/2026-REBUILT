@@ -8,7 +8,7 @@ public class intakeCommand extends Command {
     IntakeSubsystem subby;
     public intakeCommand(IntakeSubsystem subby){
         this.subby = subby;
-        //addRequirements(subby);
+        addRequirements(subby);
     }
 
 

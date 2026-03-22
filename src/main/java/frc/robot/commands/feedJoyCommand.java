@@ -1,12 +1,14 @@
 package frc.robot.commands;
 
+import java.util.function.DoubleSupplier;
+
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.FeedSubsystem;
 
-public class feedCommand extends Command {
+public class feedJoyCommand extends Command {
     FeedSubsystem subby;
-    double speed;
-    public feedCommand(FeedSubsystem subby, double speed){
+    DoubleSupplier speed;
+    public feedJoyCommand(FeedSubsystem subby, DoubleSupplier speed){
         this.subby = subby;
         this.speed = speed;
        addRequirements(subby);
@@ -15,11 +17,10 @@ public class feedCommand extends Command {
     public void initialize(){}
     @Override
     public void execute(){
-        subby.Feed(speed);
+        subby.Feed(speed.getAsDouble());
     }
     @Override
     public void end(boolean interrupted){
-        subby.Feed(0);
     }
     @Override
     public boolean isFinished(){

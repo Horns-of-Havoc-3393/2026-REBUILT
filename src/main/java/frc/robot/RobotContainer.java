@@ -1,17 +1,16 @@
 package frc.robot;
 
-import frc.robot.commands.shootnFeedCommand;
-import frc.robot.commands.shootCommand;
-import frc.robot.commands.feedCommand;
-import frc.robot.commands.DropintakeCommand;
-import frc.robot.commands.RaiseintakeCommand;
-import frc.robot.commands.StopintakeCommand;
-import frc.robot.commands.intakeCommand;
-
+import frc.robot.commands.*;
+import frc.robot.subsystems.FeedSubsystem;
+import frc.robot.subsystems.HopperSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.ShootSubsystem;
 import frc.robot.subsystems.SwerveSubsystem;
 import swervelib.SwerveInputStream;
+
+import static edu.wpi.first.units.Units.Newton;
+
+import org.opencv.dnn.Image2BlobParams;
 
 import com.pathplanner.lib.auto.NamedCommands;
 
@@ -30,20 +29,24 @@ public class RobotContainer {
     public SwerveSubsystem drivebase = new SwerveSubsystem();
     public IntakeSubsystem intake = new IntakeSubsystem();
     public ShootSubsystem shooter = new ShootSubsystem();
-    
+    public HopperSubsystem hopper = new HopperSubsystem();
+    public FeedSubsystem feeder = new FeedSubsystem();
     public RobotContainer() {
         configureBindings();
         drivebase.setDefaultCommand(!RobotBase.isSimulation() ? driveFieldOrientedAngularVelocity:driveFieldOrientedDirectAngle);
         NamedCommands.registerCommand("test", Commands.print("hellow world"));
         NamedCommands.registerCommand("Shooter command", new shootCommand(shooter,1));
-        NamedCommands.registerCommand("droxpIntake command", new DropintakeCommand(intake));
-        NamedCommands.registerCommand("raiseIntake command", new RaiseintakeCommand(intake));
+        NamedCommands.registerCommand("droxpIntake command", new DropintakeCommand(hopper));
+        NamedCommands.registerCommand("raiseIntake command", new RaiseintakeCommand(hopper));
         NamedCommands.registerCommand("spinIntake command", new intakeCommand(intake));
         NamedCommands.registerCommand("StopIntake command", new StopintakeCommand(intake));
         NamedCommands.registerCommand("StopShooter command", new shootCommand(shooter,-1));
-        NamedCommands.registerCommand("Feed command", new feedCommand(shooter,.3));
-        NamedCommands.registerCommand("stopFeed command", new feedCommand(shooter,0));
-        shooter.setDefaultCommand(new shootnFeedCommand(shooter,driver.getRightTriggerAxis(),driver.getLeftTriggerAxis()));
+        NamedCommands.registerCommand("Feed command", new feedCommand(feeder,.3));
+        NamedCommands.registerCommand("stopFeed command", new feedCommand(feeder,0));
+        shooter.setDefaultCommand(new shootJoyCommand(shooter,driver::getLeftTriggerAxis));
+        feeder.setDefaultCommand(new feedJoyCommand(feeder, driver::getRightTriggerAxis));
+        
+
     }
     
     SwerveInputStream driveAngularVelo = SwerveInputStream.of(drivebase.getSwerveDrive(),
@@ -51,7 +54,7 @@ public class RobotContainer {
                                                               ()-> driver.getLeftX()*-1)
                                                               .withControllerRotationAxis(() -> -driver.getRightX())
                                                               .deadband(Constants.stickDeadband)
-                                                              .scaleTranslation(1.5)
+                                                              .scaleTranslation(1)
                                                               .allianceRelativeControl(true);
                                                                
     SwerveInputStream driveHeading = driveAngularVelo.copy().withControllerHeadingAxis(driver::getRightX,
@@ -66,8 +69,6 @@ public class RobotContainer {
     private void configureBindings() {
         driver.start().onTrue(new InstantCommand(()->{drivebase.YawReset();},drivebase));
         operatror.leftBumper().toggleOnTrue(new intakeCommand(intake));
-        driver.rightBumper().toggleOnTrue(new shootCommand(shooter, -1));
-        driver.leftBumper().toggleOnTrue(new feedCommand(shooter, .5));
 
         
     }

@@ -8,7 +8,7 @@ public class StopintakeCommand extends Command {
     IntakeSubsystem subby;
     public StopintakeCommand(IntakeSubsystem subby){
         this.subby = subby;
-        //addRequirements(subby);
+        addRequirements(subby);
     }
 
 

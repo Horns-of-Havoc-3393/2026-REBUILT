@@ -2,14 +2,14 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.Constants;
-import frc.robot.subsystems.IntakeSubsystem;
+import frc.robot.subsystems.HopperSubsystem;
 
 public class DropintakeCommand extends Command {
 
-    IntakeSubsystem subby;
-    public DropintakeCommand(IntakeSubsystem subby){
+    HopperSubsystem subby;
+    public DropintakeCommand(HopperSubsystem subby){
         this.subby = subby;
-        //addRequirements(subby);
+        addRequirements(subby);
     }
 
 
@@ -18,7 +18,7 @@ public class DropintakeCommand extends Command {
     @Override
     public void execute(){
         if(subby.lift.getOutputCurrent()<Constants.LiftCurrentStop){
-            subby.Flip(.3);
+            subby.Lift(.3);
         }else{
             end(isScheduled());
         }
