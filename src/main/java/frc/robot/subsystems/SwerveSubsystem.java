@@ -44,8 +44,8 @@ public class SwerveSubsystem extends SubsystemBase {
         e.printStackTrace();
        throw new RuntimeException(e);
     }
-    //swerveDrive.setCosineCompensator(false);
-    //swerveDrive.setHeadingCorrection(false);
+    swerveDrive.setCosineCompensator(true);
+    swerveDrive.setHeadingCorrection(true);
     setupPathPlanner();
   }
 
