@@ -43,7 +43,7 @@ public class RobotContainer {
         NamedCommands.registerCommand("StopShooter command", new shootCommand(shooter,-1));
         NamedCommands.registerCommand("Feed command", new feedCommand(shooter,.3));
         NamedCommands.registerCommand("stopFeed command", new feedCommand(shooter,0));
-        shooter.setDefaultCommand(new shootnFeedCommand(shooter,operatror.getRightTriggerAxis(),operatror.getLeftTriggerAxis()));
+        shooter.setDefaultCommand(new shootnFeedCommand(shooter,driver.getRightTriggerAxis(),driver.getLeftTriggerAxis()));
     }
     
     SwerveInputStream driveAngularVelo = SwerveInputStream.of(drivebase.getSwerveDrive(),
@@ -66,6 +66,8 @@ public class RobotContainer {
     private void configureBindings() {
         driver.start().onTrue(new InstantCommand(()->{drivebase.YawReset();},drivebase));
         operatror.leftBumper().toggleOnTrue(new intakeCommand(intake));
+        driver.rightBumper().toggleOnTrue(new shootCommand(shooter, -1));
+        driver.leftBumper().toggleOnTrue(new feedCommand(shooter, .5));
 
         
     }

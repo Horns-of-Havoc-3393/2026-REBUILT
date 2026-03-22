@@ -20,12 +20,12 @@ public final class Constants {
     public static final int kOperatorControllerPort = 1;
   }
   public static final double stickDeadband = 0.05;
-  public static final double max_speed = Units.feetToMeters(1);
-  public static final int IntakeSparkIDT = 20;
-  public static final int IntakeSparkIDB = 21;
+  public static final double max_speed = 5;
+  public static final int IntakeSparkIDT = 23;
+  public static final int IntakeSparkIDB = 22;
   public static final int IntakeFlipSparkID =24;
-  public static final int ShooterVortexID = 23;
-  public static final int ShooterRollerSparkID = 22;
+  public static final int ShooterVortexID = 20;
+  public static final int ShooterRollerSparkID = 21;
   public static final int LiftCurrentStop= 5;
 
   
