@@ -23,7 +23,7 @@ public class RobotContainer {
     private final CommandXboxController operatror = new CommandXboxController(Constants.OperatorConstants.kOperatorControllerPort);
     
     public SwerveSubsystem drivebase = new SwerveSubsystem();
-    //public IntakeSubsystem intake = new IntakeSubsystem();
+    public IntakeSubsystem intake = new IntakeSubsystem();
     public ShootSubsystem shooter = new ShootSubsystem();
     public HopperSubsystem hopper = new HopperSubsystem();
     public FeedSubsystem feeder = new FeedSubsystem();
@@ -34,8 +34,8 @@ public class RobotContainer {
         NamedCommands.registerCommand("Shooter command", new shootCommand(shooter,1));
         NamedCommands.registerCommand("droxpIntake command", new DropintakeCommand(hopper));
         NamedCommands.registerCommand("raiseIntake command", new RaiseintakeCommand(hopper));
-        //NamedCommands.registerCommand("spinIntake command", new intakeCommand(intake));
-        //NamedCommands.registerCommand("StopIntake command", new StopintakeCommand(intake));
+        NamedCommands.registerCommand("spinIntake command", new intakeCommand(intake));
+        NamedCommands.registerCommand("StopIntake command", new StopintakeCommand(intake));
         NamedCommands.registerCommand("StopShooter command", new shootCommand(shooter,-1));
         NamedCommands.registerCommand("Feed command", new feedCommand(feeder,.3));
         NamedCommands.registerCommand("stopFeed command", new feedCommand(feeder,0));
@@ -64,11 +64,10 @@ public class RobotContainer {
 
     private void configureBindings() {
         driver.start().onTrue(new InstantCommand(()->{drivebase.YawReset();},drivebase));
+
         driver.rightBumper().toggleOnTrue(new shootCommand(shooter, -.7));
         driver.leftBumper().toggleOnTrue(new feedCommand(feeder, .5));
-
-       //operatror.leftBumper().toggleOnTrue(new LiftintakeJoyCommand(hopper));
-
+        
         
     }
     public Command getAutonomousCommand() {

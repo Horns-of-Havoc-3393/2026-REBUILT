@@ -17,17 +17,15 @@ public class DropintakeCommand extends Command {
     public void initialize(){}
     @Override
     public void execute(){
-        if(subby.lift.getOutputCurrent()<Constants.LiftCurrentStop){
-            subby.Lift(.3);
-        }else{
-            end(isScheduled());
-        }
+        subby.Lift(-.3);
     }
     @Override
     public void end(boolean interrupted){
+        subby.Lift(0);
     }
     @Override
     public boolean isFinished(){
-        return false;
+        return subby.lift.getOutputCurrent()>=Constants.LiftCurrentStop;
+         
     }
 }
