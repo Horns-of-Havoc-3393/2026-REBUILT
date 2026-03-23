@@ -8,7 +8,6 @@ import frc.robot.Constants;
 public class IntakeSubsystem  extends SubsystemBase{
     public SparkMax bottomRoller = new SparkMax(Constants.IntakeSparkIDB, MotorType.kBrushless);
     public SparkMax topRoller = new SparkMax(Constants.IntakeSparkIDT, MotorType.kBrushless);
-    public SparkMax lift = new SparkMax(Constants.IntakeFlipSparkID, MotorType.kBrushless);
     public IntakeSubsystem(){        
     }
     public void Roll(double speed){

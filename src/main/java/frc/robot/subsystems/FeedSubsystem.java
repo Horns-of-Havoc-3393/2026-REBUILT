@@ -6,7 +6,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class FeedSubsystem extends SubsystemBase{
-    SparkMax feeder = new SparkMax(Constants.ShooterVortexID, MotorType.kBrushless);
+    SparkMax feeder = new SparkMax(Constants.ShooterRollerSparkID, MotorType.kBrushless);
     public FeedSubsystem(){
         
     }

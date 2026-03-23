@@ -18,7 +18,7 @@ public class shootJoyCommand extends Command {
     public void initialize(){}
     @Override
     public void execute(){
-        subby.RampUP(speed.getAsDouble());
+        subby.RampUP(-speed.getAsDouble()*4000);
     }
     @Override
     public void end(boolean interrupted){

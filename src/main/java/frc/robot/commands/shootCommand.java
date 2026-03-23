@@ -15,11 +15,11 @@ public class shootCommand extends Command {
     public void initialize(){}
     @Override
     public void execute(){
-        subby.RampUP(speed);
+        subby.PowerMotor(speed);
     }
     @Override
     public void end(boolean interrupted){
-        subby.RampUP(0);
+        subby.PowerMotor(0);
     }
     @Override
     public boolean isFinished(){
