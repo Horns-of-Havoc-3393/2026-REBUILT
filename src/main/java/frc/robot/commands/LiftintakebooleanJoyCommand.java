@@ -6,17 +6,15 @@ import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.Constants;
 import frc.robot.subsystems.HopperSubsystem;
 
-public class LiftintakeJoyCommand extends Command {
+public class LiftintakebooleanJoyCommand extends Command {
 
     HopperSubsystem subby;
-    DoubleSupplier speedUp;
-    DoubleSupplier speedDown;
-    BooleanSupplier reset;
-    public LiftintakeJoyCommand(HopperSubsystem subby, DoubleSupplier speedUp, DoubleSupplier speedDown,BooleanSupplier reset){
+    BooleanSupplier Up;
+    BooleanSupplier Down;
+    public LiftintakebooleanJoyCommand(HopperSubsystem subby, BooleanSupplier Up, BooleanSupplier Down){
         this.subby = subby;
-        this.speedUp = speedUp;
-        this.speedDown = speedDown;
-        this.reset = reset;
+        this.Up = Up;
+        this.Down = Down;
         addRequirements(subby);
     }
 
@@ -25,7 +23,7 @@ public class LiftintakeJoyCommand extends Command {
     public void initialize(){}
     @Override
     public void execute(){
-     subby.ManualLift(((speedUp.getAsDouble()+1)/2)/4,-((speedDown.getAsDouble()+1)/2)/4, reset.getAsBoolean());     
+     subby.safeLift(Up.getAsBoolean(), Down.getAsBoolean());    
         
     }
     @Override

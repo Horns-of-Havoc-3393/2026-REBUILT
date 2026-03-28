@@ -17,15 +17,16 @@ public final class Constants {
   public static class OperatorConstants {
     public static final int kDriverControllerPort = 0;
     public static final int kOperatorControllerPort = 1;
+    public static final int kHIDOperatorControllerPort = 2;
   }
   public static final double stickDeadband = 0.05;
-  public static final double max_speed = 5;
+  public static final double max_speed = 25;
   public static final int IntakeSparkIDT = 23;
   public static final int IntakeSparkIDB = 24;
   public static final int IntakeFlipSparkID =22;
   public static final int ShooterVortexID = 20;
   public static final int ShooterRollerSparkID = 21;
-  public static final int LiftCurrentStop= 5;
+  public static final int LiftCurrentStop = 8;
 
   
 }
