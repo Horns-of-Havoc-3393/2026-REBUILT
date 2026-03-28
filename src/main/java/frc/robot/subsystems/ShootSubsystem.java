@@ -10,10 +10,10 @@ import frc.robot.Constants;
 
 public class ShootSubsystem extends SubsystemBase{
     SparkFlex shooter = new SparkFlex(Constants.ShooterVortexID, MotorType.kBrushless);
-     double p =0.00000;
+     double p =0.00028;
      double i =0;
      double d =0;
-    PIDController pid = new PIDController(.0005, 0.00000001, 0.0000005);
+    PIDController pid = new PIDController(p,i,d);
     double Rpm;
     public ShootSubsystem(){
         // SmartDashboard.putNumber("P", pid.getP());
