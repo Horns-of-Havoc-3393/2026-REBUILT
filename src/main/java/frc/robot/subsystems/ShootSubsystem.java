@@ -5,7 +5,6 @@ import com.revrobotics.spark.SparkLowLevel.MotorType;
 
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
@@ -26,7 +25,7 @@ public class ShootSubsystem extends SubsystemBase{
         if(rpm<20&&rpm>-20){rpm = 0;}
 
         if(rpm!=0){
-            if(rpm>0){
+            if(rpm>0 || rpm<0){
                 shooter.set(pid.calculate(shooter.getEncoder().getVelocity(), rpm));
             }else if(rpm<0){
                 shooter.set(pid.calculate(shooter.getEncoder().getVelocity(), rpm));
@@ -61,6 +60,9 @@ public class ShootSubsystem extends SubsystemBase{
     }
     public void setPID(){
         pid.setPID(p, i, d);
+    }
+    public double getMotorSpeed(){
+        return shooter.getEncoder().getVelocity();
     }
     @Override
     public void periodic(){

@@ -17,13 +17,12 @@ public class intakeCommand extends Command {
     @Override
     public void execute(){
         subby.Roll(1);
-        end(isScheduled());
     }
     @Override
     public void end(boolean interrupted){
     }
     @Override
     public boolean isFinished(){
-        return false;
+        return subby.getMotorSpeed()>5000;
     }
 }

@@ -11,22 +11,15 @@
           }
         },
         {
-          "type": "parallel",
+          "type": "named",
           "data": {
-            "commands": [
-              {
-                "type": "named",
-                "data": {
-                  "name": "droxpIntake command"
-                }
-              },
-              {
-                "type": "named",
-                "data": {
-                  "name": "spinIntake command"
-                }
-              }
-            ]
+            "name": "droxpIntake command"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "spinIntake command"
           }
         },
         {
@@ -42,22 +35,15 @@
           }
         },
         {
-          "type": "parallel",
+          "type": "path",
           "data": {
-            "commands": [
-              {
-                "type": "named",
-                "data": {
-                  "name": "Shooter command"
-                }
-              },
-              {
-                "type": "path",
-                "data": {
-                  "pathName": " fuel sweep posistion 1 to alliance"
-                }
-              }
-            ]
+            "pathName": " fuel sweep posistion 1 to alliance"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Shooter command"
           }
         },
         {

@@ -1,28 +1,26 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.Command;
-import frc.robot.subsystems.IntakeSubsystem;
+import frc.robot.subsystems.ShootSubsystem;
 
-public class StopintakeCommand extends Command {
-
-    IntakeSubsystem subby;
-    public StopintakeCommand(IntakeSubsystem subby){
+public class stopShootCommand extends Command {
+    ShootSubsystem subby;
+    public stopShootCommand(ShootSubsystem subby){
         this.subby = subby;
         addRequirements(subby);
     }
-
-
     @Override
     public void initialize(){}
     @Override
     public void execute(){
-        subby.Roll(0);
+        subby.PowerMotor(0);
     }
     @Override
     public void end(boolean interrupted){
+        //subby.PowerMotor(0);
     }
     @Override
     public boolean isFinished(){
-        return subby.getMotorSpeed()<59;
+        return subby.getMotorSpeed()<50;
     }
 }

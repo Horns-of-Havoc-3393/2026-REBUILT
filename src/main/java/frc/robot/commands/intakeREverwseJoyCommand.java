@@ -3,10 +3,10 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.IntakeSubsystem;
 
-public class StopintakeCommand extends Command {
+public class intakeREverwseJoyCommand extends Command {
 
     IntakeSubsystem subby;
-    public StopintakeCommand(IntakeSubsystem subby){
+    public intakeREverwseJoyCommand(IntakeSubsystem subby){
         this.subby = subby;
         addRequirements(subby);
     }
@@ -16,13 +16,14 @@ public class StopintakeCommand extends Command {
     public void initialize(){}
     @Override
     public void execute(){
-        subby.Roll(0);
+        subby.Roll(-1);
     }
     @Override
     public void end(boolean interrupted){
+        subby.Roll(0);
     }
     @Override
     public boolean isFinished(){
-        return subby.getMotorSpeed()<59;
+        return false;
     }
 }

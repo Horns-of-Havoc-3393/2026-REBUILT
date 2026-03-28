@@ -9,9 +9,12 @@ import frc.robot.Constants;
 
 public class HopperSubsystem  extends SubsystemBase{
     double calcSpeed;
+    double autoSpeedCalced;
     boolean upTrig = false;
     boolean downTrig = false;
     boolean limit = false;
+    boolean upLimit = false;
+    boolean downLimit = false;
     public SparkMax lift = new SparkMax(Constants.IntakeFlipSparkID, MotorType.kBrushless);
     public HopperSubsystem(){        
     }
@@ -32,33 +35,49 @@ public class HopperSubsystem  extends SubsystemBase{
         }
         if(limit){
             calcSpeed = 0;
-            limit = true;
+            //limit = true;
             lift.set(0);
         }else{
             lift.set(calcSpeed);
      }
 
     }
-    public void safeLift(boolean up, boolean down){
-        if(up&&downTrig){
-            if(lift.getOutputCurrent()>Constants.LiftCurrentStop){
-                upTrig = true;
-                downTrig=false;
-                lift.set(0);
-            }else{
-                lift.set(.3);
-            }
-        }else if(upTrig && down){
-            if(lift.getOutputCurrent()>Constants.LiftCurrentStop){
-                downTrig = true;
-                upTrig = false;
-                lift.set(0);
-            }else{
-                lift.set(-.3);
-            }
+    public void AutoLiftUp(double speed){
+        if(lift.getOutputCurrent()>Constants.LiftCurrentStop && !upLimit){
+            autoSpeedCalced = speed;
+        }else{
+            upLimit = true;
+            downLimit = false;
+        }
+        if(upLimit){
+            lift.set(0);
+        }else{
+            lift.set(autoSpeedCalced);
         }
     }
-    
+    public void AutoLiftDown(double speed){
+        if(lift.getOutputCurrent()>Constants.LiftCurrentStop && !downLimit){
+            autoSpeedCalced = speed;
+        }else{
+            downLimit = true;
+            upLimit = false;
+        }
+        if(downLimit){
+            lift.set(0);
+        }else{
+            lift.set(autoSpeedCalced);
+        }
+    }
+    public void limitReset(){
+        upLimit = false;
+        downLimit = false;
+    }
+    public boolean isDownStopped(){
+        return downLimit;
+    }
+    public boolean isUpStopped(){
+        return upLimit;
+    }
     //negative down/out
     @Override
     public void periodic(){

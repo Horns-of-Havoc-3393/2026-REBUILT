@@ -1,12 +1,12 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.Command;
-import frc.robot.subsystems.IntakeSubsystem;
+import frc.robot.subsystems.HopperSubsystem;
 
-public class StopintakeCommand extends Command {
+public class binaryLiftJoyCommand extends Command {
 
-    IntakeSubsystem subby;
-    public StopintakeCommand(IntakeSubsystem subby){
+    HopperSubsystem subby;
+    public binaryLiftJoyCommand(HopperSubsystem subby){
         this.subby = subby;
         addRequirements(subby);
     }
@@ -16,13 +16,15 @@ public class StopintakeCommand extends Command {
     public void initialize(){}
     @Override
     public void execute(){
-        subby.Roll(0);
+        subby.AutoLiftDown(-0.3);        
     }
     @Override
     public void end(boolean interrupted){
+        subby.AutoLiftUp(0.3);
     }
+   
     @Override
     public boolean isFinished(){
-        return subby.getMotorSpeed()<59;
+        return false;
     }
 }

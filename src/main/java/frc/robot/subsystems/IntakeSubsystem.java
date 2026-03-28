@@ -14,6 +14,9 @@ public class IntakeSubsystem  extends SubsystemBase{
         //topRoller.set(speed);
         bottomRoller.set(speed);
     }
+    public double getMotorSpeed(){
+        return bottomRoller.getEncoder().getVelocity();
+    }
     @Override
     public void periodic(){
         

@@ -41,7 +41,7 @@ public class RobotContainer {
         NamedCommands.registerCommand("raiseIntake command", new RaiseintakeCommand(hopper));
         NamedCommands.registerCommand("spinIntake command", new intakeCommand(intake));
         NamedCommands.registerCommand("StopIntake command", new StopintakeCommand(intake));
-        NamedCommands.registerCommand("StopShooter command", new shootCommand(shooter,-1));
+        NamedCommands.registerCommand("StopShooter command", new shootCommand(shooter,-.6));
         NamedCommands.registerCommand("Feed command", new feedCommand(feeder,.3));
         NamedCommands.registerCommand("stopFeed command", new feedCommand(feeder,0));
         //shooter.setDefaultCommand(new shootJoyCommand(shooter,driver::getLeftTriggerAxis));
@@ -102,8 +102,13 @@ public class RobotContainer {
             System.out.println("axis 3" + pad.getRawAxis(2));
             System.out.println("axis 4" + pad.getRawAxis(3));
         }else{
-
-        }
+            operatror.y().toggleOnTrue(new binaryLiftJoyCommand(hopper));
+            operatror.rightBumper().toggleOnTrue(new intakeJoyCommand(intake));
+            feeder.setDefaultCommand(new feedJoyCommand(feeder, ()-> operatror.getRightTriggerAxis()-operatror.getLeftTriggerAxis()));
+            operatror.b().toggleOnTrue(new binaryshootCommand(shooter, -1));
+            operatror.x().toggleOnTrue(new binaryshootCommand(shooter, .4));
+            operatror.leftBumper().toggleOnTrue(new intakeREverwseJoyCommand(intake));
+      }
     }
     public Command getAutonomousCommand() {
     
