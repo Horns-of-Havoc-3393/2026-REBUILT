@@ -16,11 +16,11 @@ public class binaryLiftJoyCommand extends Command {
     public void initialize(){}
     @Override
     public void execute(){
-        subby.AutoLiftDown(-0.3);        
+        subby.AutoLiftDown(-0.5);        
     }
     @Override
     public void end(boolean interrupted){
-        subby.AutoLiftUp(0.3);
+        subby.AutoLiftUp(0.5);
     }
    
     @Override

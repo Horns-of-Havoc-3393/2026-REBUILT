@@ -78,11 +78,10 @@ public class HopperSubsystem  extends SubsystemBase{
     public boolean isUpStopped(){
         return upLimit;
     }
-    //negative down/out
-    @Override
-    public void periodic(){
-        SmartDashboard.putNumber("Lift Current", lift.getOutputCurrent());
-        SmartDashboard.putNumber("speedGivenlift", calcSpeed);
+    public void powerLift(double speed){
+        lift.set(speed);
     }
+    //negative down/out
+
 
 }

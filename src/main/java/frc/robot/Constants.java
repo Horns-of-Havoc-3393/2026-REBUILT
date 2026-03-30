@@ -4,6 +4,7 @@
 
 package frc.robot;
 
+import edu.wpi.first.math.util.Units;
 
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
@@ -20,13 +21,13 @@ public final class Constants {
     public static final int kHIDOperatorControllerPort = 2;
   }
   public static final double stickDeadband = 0.05;
-  public static final double max_speed = 25;
+  public static final double max_speed = Units.feetToMeters(40);
   public static final int IntakeSparkIDT = 23;
   public static final int IntakeSparkIDB = 24;
   public static final int IntakeFlipSparkID =22;
   public static final int ShooterVortexID = 20;
   public static final int ShooterRollerSparkID = 21;
-  public static final int LiftCurrentStop = 8;
+  public static final int LiftCurrentStop = 30 ;
 
   
 }

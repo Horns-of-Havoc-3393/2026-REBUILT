@@ -1,6 +1,7 @@
 package frc.robot;
 
 import frc.robot.commands.*;
+import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.FeedSubsystem;
 import frc.robot.subsystems.HopperSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
@@ -10,40 +11,38 @@ import swervelib.SwerveInputStream;
 
 import com.pathplanner.lib.auto.NamedCommands;
 
-import edu.wpi.first.wpilibj.DriverStation;
-import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.RobotBase;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
-import edu.wpi.first.wpilibj2.command.button.CommandGenericHID;
-import edu.wpi.first.wpilibj2.command.button.CommandJoystick;
+//import edu.wpi.first.wpilibj2.command.button.CommandGenericHID;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 
 public class RobotContainer {     
     String path = ""; 
 
     private final CommandXboxController driver = new CommandXboxController(Constants.OperatorConstants.kDriverControllerPort);
-    private final CommandXboxController operatror = new CommandXboxController(Constants.OperatorConstants.kOperatorControllerPort);
-    private final CommandGenericHID pad = new CommandGenericHID(Constants.OperatorConstants.kHIDOperatorControllerPort);
+   // private final CommandXboxController operatror = new CommandXboxController(Constants.OperatorConstants.kOperatorControllerPort);
+    //private final CommandGenericHID pad = new CommandGenericHID(Constants.OperatorConstants.kHIDOperatorControllerPort);
 
     public SwerveSubsystem drivebase = new SwerveSubsystem();
-    public IntakeSubsystem intake = new IntakeSubsystem();
-    public ShootSubsystem shooter = new ShootSubsystem();
-    public HopperSubsystem hopper = new HopperSubsystem();
-    public FeedSubsystem feeder = new FeedSubsystem();
+    public ExampleSubsystem m_Subsystem = new ExampleSubsystem();
+    //public IntakeSubsystem intake = new IntakeSubsystem();
+    //public ShootSubsystem shooter = new ShootSubsystem();
+    //public HopperSubsystem hopper = new HopperSubsystem();
+    //public FeedSubsystem feeder = new FeedSubsystem();
     public RobotContainer() {
         configureBindings();
         drivebase.setDefaultCommand(!RobotBase.isSimulation() ? driveFieldOrientedAngularVelocity:driveFieldOrientedDirectAngle);
-        NamedCommands.registerCommand("test", Commands.print("hellow world"));
-        NamedCommands.registerCommand("Shooter command", new shootCommand(shooter,1));
-        NamedCommands.registerCommand("droxpIntake command", new DropintakeCommand(hopper));
-        NamedCommands.registerCommand("raiseIntake command", new RaiseintakeCommand(hopper));
-        NamedCommands.registerCommand("spinIntake command", new intakeCommand(intake));
-        NamedCommands.registerCommand("StopIntake command", new StopintakeCommand(intake));
-        NamedCommands.registerCommand("StopShooter command", new shootCommand(shooter,-.6));
-        NamedCommands.registerCommand("Feed command", new feedCommand(feeder,.3));
-        NamedCommands.registerCommand("stopFeed command", new feedCommand(feeder,0));
+        // NamedCommands.registerCommand("test", Commands.print("hellow world"));
+        // NamedCommands.registerCommand("Shooter command", new shootCommand(shooter,1));
+        // NamedCommands.registerCommand("droxpIntake command", new DropintakeCommand(hopper));
+        // NamedCommands.registerCommand("raiseIntake command", new RaiseintakeCommand(hopper));
+        // NamedCommands.registerCommand("spinIntake command", new intakeCommand(intake));
+        // NamedCommands.registerCommand("StopIntake command", new StopintakeCommand(intake));
+        // NamedCommands.registerCommand("StopShooter command", new shootCommand(shooter,-.6));
+        // NamedCommands.registerCommand("Feed command", new feedCommand(feeder,.3));
+        // NamedCommands.registerCommand("stopFeed command", new feedCommand(feeder,0));
         //shooter.setDefaultCommand(new shootJoyCommand(shooter,driver::getLeftTriggerAxis));
         //feeder.setDefaultCommand(new feedJoyCommand(feeder, driver::getRightTriggerAxis));
         
@@ -73,7 +72,7 @@ public class RobotContainer {
         //driver.rightBumper().toggleOnTrue(new shootCommand(shooter, -1));
         //driver.leftBumper().whileTrue(new feedCommand(feeder, .5));
         //driver.a().toggleOnTrue(new intakeJoyCommand(intake));
-        if(pad.isConnected()){
+        /*if(pad.isConnected()){
             //shooter.setDefaultCommand(new shootJoyCommand(shooter, ()-> pad.getRawAxis(0),()->pad.getRawAxis(2)));
             hopper.setDefaultCommand(new LiftintakeJoyCommand(hopper, ()->pad.getRawAxis(3),()->pad.getRawAxis(1), pad.button(4)));
         
@@ -102,18 +101,22 @@ public class RobotContainer {
             System.out.println("axis 3" + pad.getRawAxis(2));
             System.out.println("axis 4" + pad.getRawAxis(3));
         }else{
-            operatror.y().toggleOnTrue(new binaryLiftJoyCommand(hopper));
+            operatror.y().onTrue(new LiftintakeJoyCommand(hopper, ()->.75, ()->0.0, ()->operatror.start().getAsBoolean()));
+            operatror.a().onTrue(new LiftintakeJoyCommand(hopper, ()->0, ()->.75, ()->operatror.start().getAsBoolean()));
+            operatror.y().onFalse(new LiftintakeJoyCommand(hopper, ()->0, ()->0.0, ()->operatror.start().getAsBoolean()));
+            operatror.a().onFalse(new LiftintakeJoyCommand(hopper, ()->0, ()->0, ()->operatror.start().getAsBoolean()));
             operatror.rightBumper().toggleOnTrue(new intakeJoyCommand(intake));
             feeder.setDefaultCommand(new feedJoyCommand(feeder, ()-> operatror.getRightTriggerAxis()-operatror.getLeftTriggerAxis()));
-            operatror.b().toggleOnTrue(new binaryshootCommand(shooter, -1));
-            operatror.x().toggleOnTrue(new binaryshootCommand(shooter, .4));
-            operatror.leftBumper().toggleOnTrue(new intakeREverwseJoyCommand(intake));
-      }
+             operatror.b().toggleOnTrue(new binaryshootCommand(shooter, -1));
+             operatror.x().toggleOnTrue(new binaryshootCommand(shooter, .4));
+             operatror.leftBumper().toggleOnTrue(new intakeREverwseJoyCommand(intake));
+      }*/
     }
     public Command getAutonomousCommand() {
     
-    return drivebase.getAutonomousCommand(path);    
-    //return drivebase.getAutonomousCommand("Blue Playoffs Bonney Lake");    
+        return drivebase.getAutonomousCommand(path);    
+        //return Autos.exampleAuto(m_Subsystem);
+        //return drivebase.getAutonomousCommand("Blue Playoffs Bonney Lake");    
     }
     public void SetPath(String pth){
         path = pth;

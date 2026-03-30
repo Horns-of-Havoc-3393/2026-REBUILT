@@ -16,7 +16,7 @@ public class intakeCommand extends Command {
     public void initialize(){}
     @Override
     public void execute(){
-        subby.Roll(1);
+        subby.Roll(-1);
     }
     @Override
     public void end(boolean interrupted){
