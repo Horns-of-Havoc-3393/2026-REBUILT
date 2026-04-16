@@ -21,6 +21,7 @@ public class feedJoyCommand extends Command {
     }
     @Override
     public void end(boolean interrupted){
+        subby.Feed(0);
     }
     @Override
     public boolean isFinished(){

@@ -24,7 +24,7 @@ public class LiftintakeJoyCommand extends Command {
     public void initialize(){}
     @Override
     public void execute(){
-     subby.powerLift(((speedUp.getAsDouble()+1)/2)/4-((speedDown.getAsDouble()+1)/2)/4);     
+     subby.ManualLift(((speedUp.getAsDouble()+1)/2)/4,((speedDown.getAsDouble()+1)/2)/4,reset.getAsBoolean());     
         
     }
     @Override

@@ -21,7 +21,7 @@ public final class Constants {
     public static final int kHIDOperatorControllerPort = 2;
   }
   public static final double stickDeadband = 0.05;
-  public static final double max_speed = Units.feetToMeters(40);
+  public static final double max_speed = 1;//Units.feetToMeters(40);
   public static final int IntakeSparkIDT = 23;
   public static final int IntakeSparkIDB = 24;
   public static final int IntakeFlipSparkID =22;
