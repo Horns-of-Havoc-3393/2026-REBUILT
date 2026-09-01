@@ -1,1 +1,1 @@
-Code for FRC 2026 Rebuilt, Code implements YAGSL for Swerve drive. Partial autos and paths for testing, non functional auto, teleop configured for gamepad or custom HID pad.
+FRC Team 3393's 2026 robot code. Swerve drive running on YAGSL, teleop works with either a normal gamepad or our custom HID pad, and full intake/shooter/hopper/feed control. Autos are still a work in progress.
